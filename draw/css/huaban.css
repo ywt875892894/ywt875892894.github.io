@@ -1,0 +1,203 @@
+*{
+    padding: 0;
+    margin: 0;
+    list-style: none;
+}
+html,body{
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    background: #C7D1E1;
+    -webkit-user-select:none;
+    -moz-user-select:none;
+    -ms-user-select:none;
+    user-select:none;
+}
+.top{
+    width: 100%;
+    height: 40px;
+    background: #DFE9F5;
+    border-top: 1px solid rgba(0,0,0,0.3);
+    border-bottom: 1px solid rgba(0,0,0,0.3);
+}
+.top>.new{
+    width:50px;
+    height: 36px;
+    display: block;
+    float: left;
+    line-height: 36px;
+    text-align: center;
+    margin: 2px 10px;
+    cursor: pointer;
+}
+.top>.save{
+    width:50px;
+    height: 36px;
+    display: block;
+    float: left;
+    line-height: 36px;
+    text-align: center;
+    margin: 2px 10px;
+    cursor: pointer;
+}
+.top>.back{
+    width:50px;
+    height: 36px;
+    display: block;
+    float: left;
+    line-height: 36px;
+    text-align: center;
+    margin: 2px 10px;
+    cursor: pointer;
+}
+.logo{
+    width: 125px;
+    height: 100%;
+    float: left;
+    background: white;
+}
+.bottom{
+    height: 700px;
+}
+.bottom>.left{
+    width: 125px;
+    height: 700px;
+    background: #F3F9FF;
+    position: absolute;
+    box-sizing: border-box;
+    padding: 10px 20px;
+}
+.bottom>.right{
+    height: 700px;
+    position:relative;
+    margin-left: 125px;
+    top:0;
+}
+.bottom>.left>label{
+    width: 30px;
+    height: 30px;
+    display: block;
+    float: left;
+    text-align: center;
+    line-height: 30px;
+    margin: 4px 5px;
+    font-size: 20px;
+    border: 1px solid #B0BED2;
+}
+hr{
+    margin: 5px 0;
+}
+.bottom>.left>input{
+    width: 30px;
+    height: 30px;
+    display: block;
+    float: left;
+    text-align: center;
+    line-height: 30px;
+    margin: 4px 5px;
+    font-size: 20px;
+    border: 1px solid #B0BED2;
+}
+.style{
+    width: 80px;
+    height: 100px;
+    background: #B0BED2;
+    box-sizing: border-box;
+    padding-top: 10px;
+}
+canvas{
+    background: white;
+    margin: 5px;
+    box-shadow: 0 1px 5px 0 rgba(0,0,0,0.4);
+}
+.mask{
+    width: 800px;
+    height: 600px;
+    position: absolute;
+    top:5px;
+    left: 5px;
+}
+.style>.input{
+    display: block;
+    width: 50px;
+    height: 20px;
+    margin: 5px 15px;
+}
+.style>span{
+    display: block;
+    width: 100%;
+    text-align: center;
+    font-size: 14px;
+}
+.eraser{
+    position:absolute;
+    display: none;
+    border:1px solid black
+}
+.clip{
+    position:absolute;
+    display: none;
+    border:1px dashed black;
+    z-index:5;
+}
+.tanKuang{
+    width: 500px;
+    height: 150px;
+    background: rgba(200,255,255,0.3);
+    -webkit-border-radius:10px;
+    -moz-border-radius:10px;
+    border-radius:10px;
+    box-sizing: border-box;
+    padding: 5px 10px;
+    border: 1px solid black;
+    position: absolute;
+    right: 0;
+    left:0;
+    top:0;
+    bottom: 0;
+    margin: auto;
+    display: none;
+}
+.tanKuang>span{
+    display: block;
+    float: left;
+}
+.tanKuang>button{
+    display: block;
+    width: 50px;
+    height: 22px;
+    margin-top: -6px;
+    float: right;
+}
+.tanKuang>.neiRong{
+    width: 100%;
+    height: 100px;
+    background: white;
+    margin-top: 10px;
+    float: left;
+    position: relative;
+    border: 1px solid #5C5855;
+}
+.neiRong>span{
+    display: block;
+    margin-top: 5px;
+    margin-left: 10px;
+}
+.neiRong>.xuanXiang{
+    width: 100%;
+    height: 40px;
+    background: #F0F0F0;
+    border-top: 1px solid #DFDFDF;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+
+}
+.xuanXiang>button{
+    box-sizing: border-box;
+    padding: 5px 10px;
+    margin-top: 5px;
+}
+.xuanXiang>.savebtn{
+    margin-left: 60%;
+}

@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>打字游戏</title>
+</head>
+<style>
+    *{
+        padding: 0;
+        margin: 0;
+    }
+    html{
+        height:100%;
+        overflow: hidden;
+    }
+    body{
+        background-image: url("img/b1.jpg");
+        background-repeat: no-repeat;
+        background-size: 100%;
+    }
+    .score{
+        width: 150px;
+        height:50px;
+        background:rgba(0,0,0,0.4);
+        position: absolute;
+        right: 20px;
+        top: 10px;
+        color: white;
+        font-size: 30px;
+        line-height: 50px;
+        text-align: center;
+        display: none;
+        border-radius: 5px;
+    }
+    .life{
+        width: 150px;
+        height:50px;
+        background:rgba(0,0,0,0.4);
+        position: absolute;
+        left: 20px;
+        top: 10px;
+        color: white;
+        font-size: 30px;
+        line-height: 50px;
+        text-align: center;
+        display: none;
+        border-radius: 5px;
+    }
+    .guan{
+        width: 150px;
+        height:50px;
+        background:rgba(0,0,0,0.4);
+        position: absolute;
+        left: 0px;
+        right: 0;
+        margin: auto;
+        top: 10px;
+        color: white;
+        font-size: 30px;
+        line-height: 50px;
+        text-align: center;
+        display: none;
+        border-radius: 5px;
+    }
+    button{
+        width:150px;
+        height: 60px;
+        position: absolute;
+        top:0;
+        left:0;
+        bottom: 0;
+        right: 0;
+        margin: auto;
+        /*transform:translate(-50%,-50%);*/
+        border: 0;
+        border-radius: 10px;
+        outline: none;
+        cursor: pointer;
+        color: black;
+        font-size: 30px;
+    }
+    button:hover{
+        background: #91d4fd;
+    }
+    .mask{
+        width:100%;
+        height: 100%;
+        position: absolute;
+        left: 0;
+        top: 0;
+        background: rgba(0,0,0,0.5);
+        display: none;
+    }
+    .over{
+        width: 300px;
+        height: 100px;
+        font-size: 60px;
+        font-weight: bold;
+        color: red;
+        position: absolute;
+        text-align: center;
+        line-height: 100px;
+        left: 0;
+        right: 0;
+        margin: auto;
+        top: 40%;
+    }
+    .restart{
+        width:150px;
+        height: 60px;
+        position: absolute;
+        top:30%;
+        left:0;
+        right:0;
+        margin: auto;
+        /*transform:translate(-50%,-50%);*/
+        border: 0;
+        border-radius: 10px;
+        outline: none;
+        cursor: pointer;
+        color: black;
+        font-size: 30px;
+    }
+    .gonggao{
+        width: 300px;
+        height: 100px;
+        text-align: center;
+        line-height: 100px;
+        font-size: 30px;
+        font-weight: bold;
+        color: white;
+        position: absolute;
+        top: 60%;
+        left:50px;
+        transition: all linear 2s;
+        display: none;
+    }
+</style>
+<body>
+    <div class="life">生命：<span>10</span></div>
+    <div class="score">得分：<span>0</span></div>
+    <div class="guan">第 <span>1</span> 关</div>
+    <div class="gonggao">难度加大↑</div>
+    <div class="mask">
+        <div class="over">GAME OVER</div>
+        <button class="restart">重新开始</button>
+    </div>
+    <button class="start">开始游戏</button>
+</body>
+</html>
+<script src="js/animate.js"></script>
+<script>
+    var button=document.getElementsByClassName('start')[0];
+    var span=document.getElementsByTagName('span')[1];
+    var Lspan=document.getElementsByTagName('span')[0];
+    var mask=document.getElementsByClassName('mask')[0];
+    var restart=document.getElementsByClassName('restart')[0];
+    var guan=document.getElementsByClassName('guan')[0];
+    var next=document.getElementsByTagName('span')[2];
+    var gonggao=document.getElementsByClassName('gonggao')[0];
+    function Game() {
+            this.charArr=['A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z'];
+            this.cw=window.innerWidth;
+            this.charEle=[];
+            this.len=5;
+            this.speed=5;
+            this.time=100;
+            this.ch=window.innerHeight;
+            this.score=0;
+            this.life=10;
+            this.point=10;
+            this.guan=1;
+    }
+    Game.prototype= {
+        start: function () {
+            for (var i = 0; i < this.len; i++) {
+                this.getElement(this.charArr);
+            }
+            this.drop();
+            this.key();
+        },
+        getElement: function (char) {
+            if (this.life < 0) {
+                this.life = 0;
+                Lspan.innerText = this.life;
+                this.over();
+                return;
+            }
+            var num = Math.floor(Math.random() * this.charArr.length);
+            var ele = document.createElement('div');
+            var lefts = Math.random() * (this.cw - 400) + 200, tops = Math.random() * 100;
+            ele.style.cssText = `
+                width:50px;height:50px;border-radius:4px;background:#f40;
+                position:absolute;left:${lefts}px;top:${tops}px;text-align:center;
+                line-height:50px;font-size:30px;font-weight:bold;
+            `
+            ele.innerText = this.charArr[num];
+            for (var i = 0; i < this.charEle.length; i++) {
+                if (ele.innerText == this.charEle[i].innerText) {
+                    return;
+                }
+                if (lefts > parseInt(this.charEle[i].style.left) - 50 && lefts < parseInt(this.charEle[i].style.left) + 50 && tops > parseInt(this.charEle[i].style.top) - 50 && tops < parseInt(this.charEle[i].style.top) + 50) {
+                    this.getElement();
+                    return;
+                }
+            }
+            this.charEle.push(ele);
+            document.body.appendChild(ele);
+        },
+        drop: function () {
+            var self = this;
+            this.t = setInterval(function () {
+//                console.log(this);
+                self.charEle.forEach(function (value, index) {
+                    value.style.top = value.offsetTop + self.speed + 'px';
+                    if (value.offsetTop > self.ch - 50) {
+                        /*value.style.top=-50+'px';
+                        value.style.left=Math.random()*(self.cw-400)+200+'px';*/
+                        document.body.removeChild(value);
+                        self.charEle.splice(index, 1);
+                        self.life -= 1;
+                        Lspan.innerText = self.life;
+                    }
+                })
+                if (self.charEle.length < self.len) {
+                    self.getElement();
+                }
+                self.ntpoi = undefined;
+                if (self.score == self.point) {
+                    self.next();
+                }
+            }, this.time)
+        },
+        key: function () {
+            document.body.onkeydown = function (e) {
+                var code = String.fromCharCode(e.keyCode);
+                for (var i = 0; i < this.charEle.length; i++) {
+                    if (code == this.charEle[i].innerText) {
+                        console.log(this.charEle.length)
+                        document.body.removeChild(this.charEle[i]);
+                        this.charEle.splice(i, 1);
+                        this.getElement();
+                        this.score += 1;
+                        span.innerText = this.score;
+                    }
+                    /*else {
+                        return;
+                    }*/
+
+                }
+                /*    this.life-=1;
+                Lspan.innerText=self.life;*/
+
+            }.bind(this);
+        },
+        over:function () {
+                clearInterval(this.t);
+                mask.style.display='block';
+                if(this.charEle.length>0) {
+                    while (this.charEle.length !=0){
+                        document.body.removeChild(this.charEle[0]);
+                        this.charEle.splice(0,1);
+                    }
+                    console.log(this.charEle);
+                }
+
+        }, restart:function () {
+            this.len=5;
+            this.speed=5;
+            this.time=100;
+            this.score=0;
+            this.life=10;
+            this.point=10;
+            this.guan=1;
+            next.innerText=this.guan;
+            Lspan.innerText=this.life;
+            span.innerText=this.score;
+            this.start();
+            mask.style.display= 'none';
+        },
+        next: function () {
+            clearInterval(this.t);
+            if(this.charEle.length>0) {
+                while (this.charEle.length!=0){
+                    document.body.removeChild(this.charEle[0]);
+                    this.charEle.splice(0,1);
+                }
+            }
+            this.len+=1;
+            this.speed+=1;
+            this.time-=5;
+            this.point+=30;
+            this.guan+=1;
+            this.start();
+            gonggao.style.display='block';
+            animate(gonggao,{left: 1200}, function () {
+                gonggao.addEventListener('webkitTransitionEnd',function () {
+                    gonggao.style.display='none';
+                    gonggao.style.left=50+'px';
+                },false)
+            });
+            next.innerText=this.guan;
+        }
+    }
+    var game=new Game();
+    button.onclick=function () {
+        button.style.display='none';
+        span.parentNode.style.display='block';
+        Lspan.parentNode.style.display='block';
+        guan.style.display='block'
+        game.start();
+    }
+    restart.onclick=function () {
+        game.restart();
+    }
+    /*let game=new Game();
+    game.start();*/
+</script>
