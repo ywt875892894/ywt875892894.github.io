@@ -17,7 +17,7 @@ $(function(){
                    Percent(ctx1,85,15);
                });
                $($('.tech1')[1]).delay(300).animate({opacity:1,right:80},800,function () {
-                   Percent(ctx2,50,15);
+                   Percent(ctx2,80,15);
                });
                $($('.tech1')[2]).delay(400).animate({opacity:1,left:80,bottom:-50},800,function () {
                    Percent(ctx3,75,15);

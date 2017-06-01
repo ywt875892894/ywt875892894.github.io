@@ -257,7 +257,7 @@
     padding: 30px 0 20px 0;
 }
 .head1{
-    width: 300px;
+    width: 30%;
     height: 150px;
     color: white;
     position: absolute;
@@ -265,6 +265,7 @@
     left: 0;
     right: 0;
     margin: auto;
+    text-align: center;
     box-sizing: border-box;
     padding: 10px 30px;
 }
@@ -279,7 +280,7 @@
     font-size: 30px;
 }
 .head1>.xian{
-    width: 100%;
+    width: 65%;
     height: 2px;
     background: white;
     margin: 0 auto;
@@ -436,7 +437,7 @@
 .head1>.hua{
     width: 150px;
     top:16px;
-    left: 40px;
+    left: 70px;
 }
 .head2>.hua{
     width: 150px;
