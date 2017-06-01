@@ -343,7 +343,7 @@
     box-sizing: border-box;
     padding-top: 160px;
     position: absolute;
-    right: -1000px;
+    left: 100%;
 }
 .a1{
     width: 220px;

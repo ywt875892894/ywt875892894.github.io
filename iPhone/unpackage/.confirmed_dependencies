@@ -1,0 +1,12 @@
+{
+  "index.html": {
+    "resources": [
+      "images/a_medium.jpg",
+      "images/w_medium.jpg",
+      "images/s_medium.jpg",
+      "images/i_medium.jpg",
+      "images/iphone7_small.png",
+      "index.css"
+    ]
+  }
+}

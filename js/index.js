@@ -30,7 +30,7 @@ $(function(){
                $('.main1 .head1').animate({top:0});
                $('.main1 .head1 .hua').delay(1000).animate({opacity:1},1000);
                $('.main1 .left').delay(500).animate({left:100});
-               $('.main1 .right').delay(500).animate({right:0});
+               $('.main1 .right').delay(500).animate({left:300});
            }
            if(index==5){
                $('.main2 .head2').animate({top:0});
