@@ -488,13 +488,18 @@
     text-align: center;
     line-height: 24px;
 }
-.kuai>.b1{
+.kuai>.bb{
+    width: 100%;
+    overflow: hidden;
+}
+.kuai>.bb>.b1{
     font-size: 14px;
     float: left;
+    line-height: 24px;
     margin-left: 20px;
     color:#9A9A9A;
 }
-.kuai>a{
+.kuai>.bb>a{
     display: block;
     height: 24px;
     float: left;
